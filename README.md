@@ -63,5 +63,5 @@ for multi-label tasks.
 + RSI-CB: https://github.com/lehaifeng/RSI-CB
 + UCM: http://weegee.vision.ucmerced.edu/datasets/landuse.html
 
-Dataset splits are located in `dataset_splits` directory. The filenames contain the dataset name and proportion of training images. For example, `MLRSNet80-split.pkl` is the MLRSNet split with 80% training and 20% test images.
+Dataset splits can be downloaded at https://drive.google.com/drive/folders/1utNOUsQP3bWd-36jwVz9gQ-QZRQKhfvq?usp=sharing. The filenames contain the dataset name and proportion of training images. For example, `MLRSNet80-split.pkl` is the MLRSNet split with 80% training and 20% test images.
 
