@@ -130,7 +130,7 @@ batch_size = 100
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-p', '--path', dest='path', required=True, help='Path to the images')
-parser.add_argument('-d', '--data', dest='data', required=True, help='Dataset split')
+parser.add_argument('-d', '--data-split', dest='data', required=True, help='Dataset split')
 parser.add_argument('-n', '--name', dest='name', required=True, help='Model name')
 parser.add_argument('-m', '--model', dest='model',
                     help='None/imagenet/path_to_the_pre-trained_model.')
