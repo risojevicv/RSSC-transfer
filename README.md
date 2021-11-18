@@ -1,6 +1,17 @@
 # RSSC-transfer
 Repository with the source code and pre-trained models for the paper ["The Role of Pre-Training in High-Resolution Remote Sensing Scene Classification"](https://arxiv.org/abs/2111.03690), submitted to *IEEE Geoscience and Remote Sensing Letters*.
 
+## Datasets
+
++ MLRSNet: https://github.com/cugbrs/MLRSNet
++ NWPU-RESISC45: https://1drv.ms/u/s!AmgKYzARBl5ca3HNaHIlzp_IXjs
++ AID: https://captain-whu.github.io/AID/
++ PatternNet: https://sites.google.com/view/zhouwx/dataset
++ RSI-CB: https://github.com/lehaifeng/RSI-CB
++ UCM: http://weegee.vision.ucmerced.edu/datasets/landuse.html
+
+Dataset splits can be downloaded at https://drive.google.com/drive/folders/1utNOUsQP3bWd-36jwVz9gQ-QZRQKhfvq?usp=sharing. The filenames contain the dataset name and proportion of training images. For example, `MLRSNet80-split.pkl` is the MLRSNet split with 80% training and 20% test images.
+
 ## Models
 The pre-trained models can be downloaded at: https://drive.google.com/drive/folders/1kMpZEPKs7S8XlNMKK-A7fe8_O_SzlMi3?usp=sharing
 
@@ -54,14 +65,4 @@ for single-label tasks, or
 
 for multi-label tasks.
 
-## Datasets
-
-+ MLRSNet: https://github.com/cugbrs/MLRSNet
-+ NWPU-RESISC45: https://1drv.ms/u/s!AmgKYzARBl5ca3HNaHIlzp_IXjs
-+ AID: https://captain-whu.github.io/AID/
-+ PatternNet: https://sites.google.com/view/zhouwx/dataset
-+ RSI-CB: https://github.com/lehaifeng/RSI-CB
-+ UCM: http://weegee.vision.ucmerced.edu/datasets/landuse.html
-
-Dataset splits can be downloaded at https://drive.google.com/drive/folders/1utNOUsQP3bWd-36jwVz9gQ-QZRQKhfvq?usp=sharing. The filenames contain the dataset name and proportion of training images. For example, `MLRSNet80-split.pkl` is the MLRSNet split with 80% training and 20% test images.
 
