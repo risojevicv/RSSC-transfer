@@ -1,5 +1,5 @@
 # RSSC-transfer
-Repository with the source code and pre-trained models for the paper ["The Role of Pre-Training in High-Resolution Remote Sensing Scene Classification"](https://arxiv.org/abs/2111.03690), submitted to *IEEE Geoscience and Remote Sensing Letters*.
+Repository with the source code and pre-trained models for the paper ["The Role of Pre-Training in High-Resolution Remote Sensing Scene Classification"](https://arxiv.org/abs/2111.03690).
 
 ## Datasets
 
