@@ -43,7 +43,7 @@ To run feature extraction on a single-label dataset use:
 
 To run feature extraction on a multi-label dataset use:
 
-`python extract_features_multilabel.py --path-split /path/to/dataset/ --data DATASET_SPLIT --features /path/to/features/ --model imagenet|/path/to/model`
+`python extract_features_multilabel.py --path /path/to/dataset/ --data-split DATASET_SPLIT --features /path/to/features/ --model imagenet|/path/to/model`
 
 Flags:
 + `--path`: path to the images.
