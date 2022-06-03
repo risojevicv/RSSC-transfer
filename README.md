@@ -1,5 +1,5 @@
 # RSSC-transfer
-Repository with the source code and pre-trained models for the paper ["The Role of Pre-Training in High-Resolution Remote Sensing Scene Classification"](https://arxiv.org/abs/2111.03690).
+Repository with the source code and pre-trained models for the paper ["Do we still need ImageNet pre-training in remote sensing scene classification?"](https://arxiv.org/abs/2111.03690), accepted at [ISPRS Congress 2022](https://www.isprs2022-nice.com/).
 
 ## Datasets
 
@@ -20,21 +20,36 @@ Models in `scratch` are trained from scratch on HRRS datasets. Models in `imagen
 ## Training/Fine-tuning
 To train/fine-tune a ResNet50 model on a single-label dataset use:
 
-`python train.py --path /path/to/dataset/ --data-split DATASET_SPLIT --name MODEL_NAME --lr MAXIMAL_LR [--model imagenet|/path/to/model]`
+```
+python train.py --path /path/to/dataset/ \
+                --data-split DATASET_SPLIT \
+                 --name MODEL_NAME 
+                 --lr MAXIMAL_LR 
+                 [--model imagenet|/path/to/model] \
+                 [--batch-size BATCH_SIZE]
+```
 
 To train/fine-tune a ResNet50 model on a multi-label dataset use:
 
-`python train_multilabel.py --path /path/to/dataset/ -data-split DATASET_SPLIT --name MODEL_NAME --lr MAXIMAL_LR [-m imagenet|/path/to/model]`
+```
+python train_multilabel.py --path /path/to/dataset/ \
+                           --data-split DATASET_SPLIT \
+                           --name MODEL_NAME \
+                           --lr MAXIMAL_LR \
+                           [--model imagenet|/path/to/model] \
+                           [--batch-size BATCH_SIZE]
+```
 
 Flags:
 + `--path`: path to the images.
 + `--data-split`: one of the splits in `data_splits` directory.
 + `--name`: the name of the trained model.
 + `--lr`: the learning rate is linearly increased up to this value and then decreased by a factor of 0.2 in the 50th, 70th, and 90th epochs.
-+ `--model`: 
++ `--model` (optional): 
   - absent: the model is trained from scratch, 
   - `imagenet`: a model pre-trained on ImageNet-1k is fine-tuned, 
   - `/path/to/model`: the specified model is fine-tuned.
++ `--batch-size` (optional): the batch size (default: 100)
 
 ## Feature extraction
 To run feature extraction on a single-label dataset use:

@@ -12,10 +12,10 @@ Created on Thu Jul  4 23:37:36 2019
 import os
 import pickle
 import random
+import sklearn
 import argparse
 import numpy as np
 import tensorflow as tf
-
 from tensorflow.keras import Model
 import tensorflow.keras.backend as K
 from tensorflow.keras import optimizers
@@ -125,19 +125,20 @@ class LoadPreprocessImageVal():
 
     return image, record['class']
 
-
-batch_size = 100
-
 parser = argparse.ArgumentParser()
 parser.add_argument('-p', '--path', dest='path', required=True, help='Path to the images')
 parser.add_argument('-d', '--data-split', dest='data', required=True, help='Dataset split')
-parser.add_argument('-n', '--name', dest='name', required=True, help='Model name')
-parser.add_argument('-m', '--model', dest='model',
+parser.add_argument('-n', '--name', dest='name', help='Model name')
+parser.add_argument('-m', '--model', dest='model', required=False,
                     help='None/imagenet/path_to_the_pre-trained_model.')
 parser.add_argument('--lr', dest='max_lr', type=float, required=True, help='Maximal learning rate.')
+parser.add_argument('-b', '--batch-size', dest='batch_size', type=int,
+                    required=False, default=100,
+                    help='Batch size.')
 args = parser.parse_args()
 
 dataset = args.data
+batch_size = args.batch_size
 preproc = args.model is not None and 'imagenet' in args.model
 
 with open(f'data_splits/{dataset}-split.pkl', 'rb') as f:
@@ -154,6 +155,9 @@ nr_classes = len(le.classes_)
 nr_training = len(data_partition['train']['class'])
 steps_per_epoch = nr_training // batch_size
 
+options = tf.data.Options()
+options.experimental_distribute.auto_shard_policy = tf.data.experimental.AutoShardPolicy.OFF
+
 train_list_ds = tf.data.Dataset.from_tensor_slices(data_partition['train'])
 train_ds = train_list_ds.shuffle(nr_training)
 train_ds = train_ds.map(LoadPreprocessImage(args.path,
@@ -164,6 +168,7 @@ train_ds = train_ds.map(LoadPreprocessImage(args.path,
                         num_parallel_calls=tf.data.experimental.AUTOTUNE)
 train_ds = train_ds.batch(batch_size)
 train_ds = train_ds.prefetch(tf.data.experimental.AUTOTUNE)
+train_ds = train_ds.with_options(options)
 
 test_list_ds = tf.data.Dataset.from_tensor_slices(data_partition['test'])
 test_ds = test_list_ds.map(LoadPreprocessImageVal(args.path,
@@ -173,6 +178,7 @@ test_ds = test_list_ds.map(LoadPreprocessImageVal(args.path,
                            num_parallel_calls=tf.data.experimental.AUTOTUNE)
 test_ds = test_ds.batch(batch_size)
 test_ds = test_ds.prefetch(tf.data.experimental.AUTOTUNE)
+test_ds = test_ds.with_options(options)
 
 with strategy.scope():
     if args.model is None or args.model == 'imagenet':
@@ -188,7 +194,7 @@ with strategy.scope():
     x = Dense(nr_classes, activation='softmax')(x)
     clf = Model(base_model.input, x)
 
-    opt = optimizers.Adam(lr=1e-5)
+    opt = optimizers.Adam(learning_rate=1e-5)
     clf.compile(opt,
                 loss='sparse_categorical_crossentropy',
                 metrics=['accuracy'])
@@ -208,11 +214,11 @@ h = clf.fit(train_ds,
 filename = 'models/rssc_resnet50'
 if args.model == 'imagenet':
     filename += '_imagenet'
+if args.name is not None:
+    filename += '_{}'.format(args.name)
 filename += '_{}'.format(dataset)
 if args.model is not None:
     filename += '_ft'
-if args.name is not None:
-    filename += '_{}'.format(args.name)
 filename += '.h5'
 
 clf.save(filename)
