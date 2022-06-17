@@ -30,7 +30,7 @@ python train.py --path /path/to/dataset/ \
                 --data-split DATASET_SPLIT \
                  --name MODEL_NAME 
                  --lr MAXIMAL_LR 
-                 [--model imagenet|/path/to/model] \
+                 [--model imagenet|/path/to/model]
                  [--batch-size BATCH_SIZE]
 ```
 
@@ -41,7 +41,7 @@ python train_multilabel.py --path /path/to/dataset/ \
                            --data-split DATASET_SPLIT \
                            --name MODEL_NAME \
                            --lr MAXIMAL_LR \
-                           [--model imagenet|/path/to/model] \
+                           [--model imagenet|/path/to/model]
                            [--batch-size BATCH_SIZE]
 ```
 
@@ -78,10 +78,10 @@ python extract_features_multilabel.py --path /path/to/dataset/ \
 Flags:
 + `--path`: path to the images.
 + `--data-split`: one of the splits in `data_splits` directory.
-+ `--name`: the name of the trained model.
 + `--model`: 
   - `imagenet`: a model pre-trained on ImageNet-1k is used, 
   - `/path/to/model`: the specified model is used as a feature extractor.
++ `--batch-size` (optional): the batch size (default: 100)
 
 ## Linear classifier
 
