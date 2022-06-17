@@ -91,7 +91,7 @@ class ResNetBackbone(nn.Module):
         self.model = models.resnet50(pretrained=False)
         del self.model.fc
 
-        state_dict = torch.load(os.path.join('../models', self.model_name + '.pth'))
+        state_dict = torch.load(os.path.join('../models/ssl', self.model_name + '.pth'))
         self.model.load_state_dict(state_dict)
 
         self.model.train()

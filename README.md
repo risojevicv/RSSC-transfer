@@ -1,5 +1,5 @@
 # RSSC-transfer
-Repository with the source code and pre-trained models for the paper ["Do we still need ImageNet pre-training in remote sensing scene classification?"](https://arxiv.org/abs/2111.03690), accepted at [ISPRS Congress 2022](https://www.isprs2022-nice.com/).
+Repository with the source code and pre-trained models for the paper [Do we still need ImageNet pre-training in remote sensing scene classification?](https://arxiv.org/abs/2111.03690).
 
 ## Datasets
 
@@ -15,7 +15,12 @@ Dataset splits can be downloaded at https://drive.google.com/drive/folders/1utNO
 ## Models
 The pre-trained models can be downloaded at: https://drive.google.com/drive/folders/1kMpZEPKs7S8XlNMKK-A7fe8_O_SzlMi3?usp=sharing
 
-Models in `scratch` are trained from scratch on HRRS datasets. Models in `imagenet` are pre-trained on ImageNet-1k and fine-tuned on HRRS datasets.
+Models in `scratch` are trained from scratch on HRRS datasets, models in `imagenet` are pre-trained on ImageNet-1k and fine-tuned on HRRS datasets, and in `ssl` are the original SwAV model as well as the models fine-tuned on HRRS datasets. 
+
+## Installation
+Download the data splits from https://drive.google.com/drive/folders/1utNOUsQP3bWd-36jwVz9gQ-QZRQKhfvq?usp=sharing and put them into `data_splits` directory.
+
+Download the pre-trained models from https://drive.google.com/drive/folders/1kMpZEPKs7S8XlNMKK-A7fe8_O_SzlMi3?usp=sharing and put them into `models` directory.
 
 ## Training/Fine-tuning
 To train/fine-tune a ResNet50 model on a single-label dataset use:
@@ -90,4 +95,19 @@ for single-label tasks, or
 
 for multi-label tasks.
 
+# Citation
 
+If you find this repository useful in your research, please cite:
+
+```
+@Article{isprs-archives-XLIII-B3-2022-1399-2022,
+AUTHOR = {Risojevi\'c, V. and Stojni\'c, V.},
+TITLE = {DO WE STILL NEED IMAGENET PRE-TRAINING IN REMOTE SENSING SCENE CLASSIFICATION?},
+JOURNAL = {The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences},
+VOLUME = {XLIII-B3-2022},
+YEAR = {2022},
+PAGES = {1399--1406},
+URL = {https://www.int-arch-photogramm-remote-sens-spatial-inf-sci.net/XLIII-B3-2022/1399/2022/},
+DOI = {10.5194/isprs-archives-XLIII-B3-2022-1399-2022}
+}
+```
