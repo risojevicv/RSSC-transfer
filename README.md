@@ -47,7 +47,7 @@ python train_multilabel.py --path /path/to/dataset/ \
 
 Flags:
 + `--path`: path to the images.
-+ `--data-split`: one of the splits in `data_splits` directory.
++ `--data-split`: one of the splits in `data_splits` directory, e.g. `MLRSNet20`.
 + `--name`: the name of the trained model.
 + `--lr`: the learning rate is linearly increased up to this value and then decreased by a factor of 0.2 in the 50th, 70th, and 90th epochs.
 + `--model` (optional): 
@@ -77,7 +77,7 @@ python extract_features_multilabel.py --path /path/to/dataset/ \
 
 Flags:
 + `--path`: path to the images.
-+ `--data-split`: one of the splits in `data_splits` directory.
++ `--data-split`: one of the splits in `data_splits` directory, e.g. `MLRSNet20`.
 + `--model`: 
   - `imagenet`: a model pre-trained on ImageNet-1k is used, 
   - `/path/to/model`: the specified model is used as a feature extractor.
